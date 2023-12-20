@@ -1,0 +1,11 @@
+# Features
+
+## Built-in Admin Panel  
+* Login for Super Admin and management
+
+## POS Terminal
+* Transaction Order
+
+## Management
+* Manage system maintenance and users.
+* Can view and export reports

@@ -1,0 +1,15 @@
+site_name: Laundry Shop POS Documentations
+
+theme:
+  name: material
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - rust
+    - python
+    - react
+    - django
+
+markdown_extensions:
+  - attr_list
+  - md_in_html

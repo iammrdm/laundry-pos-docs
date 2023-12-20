@@ -1,0 +1,5 @@
+git push origin development -- push to Github development branch
+git push heroku development:master -- push to Heroku
+git push heroku-client development:master -- push to Heroku client
+git push heroku-management development:master -- push to Heroku management
+git push origin master -- push to Github master branch

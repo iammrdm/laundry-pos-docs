@@ -1,0 +1,16 @@
+Front End
+    Buildpacks
+    - https://github.com/mars/create-react-app-buildpack
+    - https://github.com/timanovsky/subdir-heroku-buildpack
+
+    Config Vars
+    - PROJECT_PATH: project_folder
+
+Back End
+    Buildpacks
+    - heroku/python
+    - https://github.com/timanovsky/subdir-heroku-buildpack
+
+    Config Vars
+    - PROJECT_PATH: project_folder
+    - DATABASE_URL: db.host
