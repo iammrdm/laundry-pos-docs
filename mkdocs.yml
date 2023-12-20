@@ -1,7 +1,7 @@
 site_name: Laundry Shop POS Documentations
 
 theme:
-  name: material
+  name: readthedocs
   highlightjs: true
   hljs_languages:
     - yaml
