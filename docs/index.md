@@ -9,6 +9,7 @@
 
 ## Project layout
 
+* `docs/api.md` -API Usage.
 * `docs/db_design.md` - All about database schema.
 * `docs/deployment.md` - Deployment of the POS.
 * `docs/developer_notes.md` - Notes of the developer.
