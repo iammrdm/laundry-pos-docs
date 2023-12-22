@@ -1,0 +1,16 @@
+- pipeline: "Test and Build"
+  on: "CLICK"
+  refs:
+    - "refs/heads/main"
+  worker_assigntment: "*"
+  trigger_condition: "ALWAYS"
+
+  actions:
+    - action:  Test 
+      type: AWS_CLI_2
+      trigger_condition: ALWAYS
+      region: "ap-southeast-1"
+      integration_hash: xWOBqnkEKQe1ERwqeJYvV0AZPX
+      execute_commands:
+        - apt-get update && apt-get install -y curl
+        - bash ./bash-scripts/instance-operation.sh ${AWS_INSTANCE_ID} start ${SLACK_WEBHOOK_URL}
