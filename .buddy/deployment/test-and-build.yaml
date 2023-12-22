@@ -1,7 +1,7 @@
 - pipeline: "Test and Build"
   on: "CLICK"
   refs:
-    - "refs/heads/main"
+    - "refs/heads/update-docs"
   worker_assigntment: "*"
   trigger_condition: "ALWAYS"
 
