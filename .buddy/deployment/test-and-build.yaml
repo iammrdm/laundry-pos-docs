@@ -1,0 +1,41 @@
+- pipeline: "Test and Build"
+  events:
+  - type: "PUSH"
+    refs:
+    - "refs/heads/*"
+  fail_on_prepare_env_warning: true
+  
+  actions:
+  - action: "Send notification"
+    type: "SLACK"
+    content: "[#$BUDDY_EXECUTION_ID] $BUDDY_PIPELINE_NAME execution by <$BUDDY_INVOKER_URL|$BUDDY_INVOKER_NAME>."
+    blocks: "[\n\t{\n\t\t\"type\": \"section\",\n\t\t\"fields\": [\n\t\t\t{\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"*Successful start:* <$BUDDY_EXECUTION_URL|Execution #$BUDDY_EXECUTION_ID $BUDDY_EXECUTION_COMMENT>\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"*Pipeline:* <$BUDDY_PIPELINE_URL|$BUDDY_PIPELINE_NAME>\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"*Ref:* $BUDDY_PIPELINE_REF_NAME\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"*Project:* <$BUDDY_PROJECT_URL|$BUDDY_PROJECT_NAME>\"\n\t\t\t}\n\t\t]\n\t}\n]"
+    channel: "C069F17CRU1"
+
+    integration_hash: "nJ7LV65xYRdGz4RJbDzOWg4AyK"
+  - action: "Lint Dockerfile"
+    type: "DOCKERFILE_LINTER"
+    local_path: "Dockerfile"
+    shell_type: "sh"
+
+  - action: "Build Docker image"
+    type: "DOCKERFILE"
+    docker_image_tag: "test-and-build-pos-docs"
+    repository: "iammrdm/laundry-pos"
+    do_not_prune_images: true
+    integration_hash: "X2lwGqLkzPdy7YwnaQrov3KBgA"
+
+  - action: "Send notification-1"
+    type: "SLACK"
+    content: "[#$BUDDY_EXECUTION_ID] $BUDDY_PIPELINE_NAME execution by <$BUDDY_INVOKER_URL|$BUDDY_INVOKER_NAME>."
+    blocks: "[\n\t{\n\t\t\"type\": \"section\",\n\t\t\"fields\": [\n\t\t\t{\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"*Successful run:* <$BUDDY_EXECUTION_URL|Execution #$BUDDY_EXECUTION_ID $BUDDY_EXECUTION_COMMENT>\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"*Pipeline:* <$BUDDY_PIPELINE_URL|$BUDDY_PIPELINE_NAME>\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"*Ref:* $BUDDY_PIPELINE_REF_NAME\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"*Project:* <$BUDDY_PROJECT_URL|$BUDDY_PROJECT_NAME>\"\n\t\t\t}\n\t\t]\n\t}\n]"
+    channel: "C069F17CRU1"
+    integration_hash: "nJ7LV65xYRdGz4RJbDzOWg4AyK"
+
+  - action: "Send notification-2"
+    type: "SLACK"
+    trigger_time: "ON_FAILURE"
+    content: "[#$BUDDY_EXECUTION_ID] $BUDDY_PIPELINE_NAME execution by <$BUDDY_INVOKER_URL|$BUDDY_INVOKER_NAME>."
+    blocks: "[\n\t{\n\t\t\"type\": \"section\",\n\t\t\"fields\": [\n\t\t\t{\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"*Failed run:* <$BUDDY_EXECUTION_URL|Execution #$BUDDY_EXECUTION_ID $BUDDY_EXECUTION_COMMENT>\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"*Pipeline:* <$BUDDY_PIPELINE_URL|$BUDDY_PIPELINE_NAME>\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"*Ref:* $BUDDY_PIPELINE_REF_NAME\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"*Project:* <$BUDDY_PROJECT_URL|$BUDDY_PROJECT_NAME>\"\n\t\t\t}\n\t\t]\n\t}\n]"
+    channel: "C069F17CRU1"
+    integration_hash: "nJ7LV65xYRdGz4RJbDzOWg4AyK"
